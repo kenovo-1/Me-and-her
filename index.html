@@ -12,22 +12,36 @@
             <h1>Welcome to Our Love</h1>
             <p>Our special space, just for the two of us.</p>
         </header>
+
         <section class="calendar">
             <h2>Love Calendar</h2>
-            <!-- Love Calendar and countdown will go here -->
+            <button onclick="openCalendar()">Open Calendar</button>
         </section>
+
         <section class="messages">
             <h2>Flirty Messages</h2>
-            <!-- Pickup lines will go here -->
+            <button onclick="generatePickupLine()">Get a Pickup Line</button>
+            <div id="pickupLine"></div>
         </section>
+
         <section class="songs">
             <h2>Our Songs</h2>
-            <!-- Songs list will go here -->
+            <input type="text" id="songSearch" placeholder="Search songs">
+            <button onclick="searchSong()">Search on YouTube</button>
         </section>
+
+        <section class="notes">
+            <h2>Leave a Note</h2>
+            <textarea id="noteInput" placeholder="Write a note..."></textarea>
+            <button onclick="saveNote()">Save Note</button>
+            <div id="savedNotes"></div>
+        </section>
+
         <footer>
             <p>Made with love by Us</p>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
