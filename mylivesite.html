@@ -1,0 +1,71 @@
+<!-- index.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Our Love</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h1>Welcome to Our Love Space</h1>
+    <p>Enter your name to continue</p>
+    <input type="text" id="username" placeholder="Enter 'Anshu' or 'Aanya' only">
+    <button onclick="login()">Enter</button>
+    <p id="error-msg"></p>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html><!-- dashboard.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - Our Love</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <h2>Hello, <span id="welcome-name"></span>!</h2>
+    <p>Status: <span id="online-status" class="online">Connecting...</span></p>
+    <div class="tabs">
+      <button onclick="window.open('calendar.html')">Love Calendar</button>
+      <button onclick="window.open('chat.html')">Chat Now</button>
+      <button onclick="window.open('music.html')">Listen Together</button>
+      <button onclick="window.open('watch.html')">Watch Together</button>
+      <button onclick="window.open('notes.html')">Leave a Note</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html><!-- calendar.html --><!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Our Love Calendar</h1>
+  <p>Countdown to Our Anniversary:</p>
+  <div id="countdown"></div>
+  <canvas id="rosesCanvas"></canvas>
+  <script>
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("2024-11-21T00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html><!-- style.css -->body { font-family: 'Segoe UI', sans-serif; background-color: #ffe6f0; margin: 0; padding: 0; text-align: center; } .login-container, .dashboard, .tabs { margin-top: 50px; } input { padding: 10px; font-size: 16px; margin-top: 10px; } button { padding: 10px 20px; margin: 10px; font-size: 16px; background-color: #ff80b3; color: white; border: none; border-radius: 5px; cursor: pointer; } button:hover { background-color: #ff3385; } .online { color: green; }
+
+/* You can later add animation for roses in #rosesCanvas */
+
+/* Additional styling for calendar, chat, etc., can be added */
+
+<!-- script.js -->function login() { const username = document.getElementById("username").value.trim().toLowerCase(); if (username === "anshu" || username === "aanya") { localStorage.setItem("user", username); window.location.href = "dashboard.html"; } else { document.getElementById("error-msg").innerText = "Access denied. Only for Anshu and Aanya!"; } }
+
+window.onload = function () { const currentPage = window.location.pathname.split("/").pop(); if (currentPage === "dashboard.html") { const user = localStorage.getItem("user"); if (!user) window.location.href = "index.html"; document.getElementById("welcome-name").innerText = user.charAt(0).toUpperCase() + user.slice(1); document.getElementById("online-status").innerText = "Online"; } }
+
